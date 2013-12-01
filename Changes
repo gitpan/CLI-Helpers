@@ -1,0 +1,35 @@
+==================================================
+Changes from 2012-12-01 00:00:00 +0000 to present.
+==================================================
+
+----------------------------------------
+version 0.1 at 2013-12-01 21:40:33 +0000
+----------------------------------------
+
+  Change: bb24cf2035feeed5da5b321ee7056aaecd21e5f2
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2013-12-01 22:40:01 +0000
+
+    Maintain a Changelog from git. 
+
+  Change: 26e4e2117fb1c0bb04cc95fcbd73a08e9d18acb5
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2013-12-01 22:37:12 +0000
+
+    Fix POD 
+
+  Change: 5af7ff7a430e733f8dea0acd541484d0964df6fa
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2013-11-17 23:53:06 +0000
+
+    Fixes to documentation and safety wrapper around the GetOptions() call 
+
+  Change: eb343b1b913f4dd44c5ab4870d320a5a35e195b7
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2013-11-17 14:10:13 +0000
+
+    First revision 
+
+================
+End of releases.
+================
