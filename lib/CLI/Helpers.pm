@@ -1,7 +1,7 @@
 # ABSTRACT: Subroutines for making simple command line scripts
 package CLI::Helpers;
 
-our $VERSION = 0.1;
+our $VERSION = 0.2;
 our $_OPTIONS_PARSED;
 
 use strict;
@@ -76,7 +76,7 @@ sub output {
     my $opts = ref $_[0] eq 'HASH' ? shift @_ : {};
 
     # Quiet mode!
-    return if $DEF{quiet};
+    return if $DEF{QUIET};
 
     # Input/output Arrays
     my @input = @_;
@@ -167,15 +167,13 @@ __END__
 
 =pod
 
-=encoding UTF-8
-
 =head1 NAME
 
 CLI::Helpers - Subroutines for making simple command line scripts
 
 =head1 VERSION
 
-version 0.1
+version 0.2
 
 =head1 SYNOPSIS
 
