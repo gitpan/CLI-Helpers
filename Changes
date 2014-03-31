@@ -1,9 +1,20 @@
 ==================================================
-Changes from 2013-02-03 00:00:00 +0000 to present.
+Changes from 2013-03-31 00:00:00 +0000 to present.
 ==================================================
 
 ----------------------------------------
-version 0.2 at 2014-02-03 15:03:27 +0000
+version 0.3 at 2014-03-31 18:14:12 +0000
+----------------------------------------
+
+  Change: ce65d62b5d7bca5982fdcad2c0881dab295bc238
+  Author: Brad Lhotsky <brad.lhotsky@booking.com>
+  Date : 2014-03-31 20:11:37 +0000
+
+    Added input functions: confirm, text_input, menu and prompt as a wrapper.
+    Added input and output groups 
+
+----------------------------------------
+version 0.2 at 2014-02-03 15:03:03 +0000
 ----------------------------------------
 
   Change: 2448c90389e463777651c9385b8dd85ba0b66ab7
