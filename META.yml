@@ -30,10 +30,10 @@ requires:
 resources:
   homepage: https://github.com/reyjrar/CLI-Helpers
   repository: https://github.com/reyjrar/CLI-Helpers.git
-version: '0.3'
+version: '0.4'
 x_Dist_Zilla:
   perl:
-    version: '5.014002'
+    version: '5.018002'
   plugins:
     -
       class: Dist::Zilla::Plugin::GatherDir

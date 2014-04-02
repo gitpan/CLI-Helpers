@@ -1,7 +1,7 @@
 # ABSTRACT: Subroutines for making simple command line scripts
 package CLI::Helpers;
 
-our $VERSION = 0.3;
+our $VERSION = 0.4;
 our $_OPTIONS_PARSED;
 
 use strict;
@@ -12,6 +12,14 @@ use Term::ANSIColor;
 use Term::ReadLine;
 use YAML;
 use Getopt::Long qw(:config pass_through);
+
+{ # Work-around for CPAN Smoke Test Failure
+    # Details: http://perldoc.perl.org/5.8.9/Term/ReadLine.html#CAVEATS
+    open( my $FH, "/dev/tty" )
+        or eval 'sub Term::ReadLine::findConsole { ("&STDIN", "&STDERR") }';
+    die $@ if $@;
+    close $FH;
+} # End Work-around
 
 
 use Sub::Exporter -setup => {
@@ -46,8 +54,7 @@ my %DEF = (
 );
 debug_var(\%DEF);
 
-# Initialize the Term::ReadLine object
-my $TERM = Term::ReadLine->new($0);
+my $TERM = undef;
 
 
 sub def { return exists $DEF{$_[0]} ? $DEF{$_[0]} : undef }
@@ -171,6 +178,9 @@ sub override {
 my $_Confirm_Valid;
 sub confirm {
     my ($question) = @_;
+
+    # Initialize Globals
+    $TERM ||= Term::ReadLine->new($0);
     $_Confirm_Valid ||= {qw(y 1 yes 1 n 0 no 0)};
 
     $question =~ s/\s*$/ [yN] /;
@@ -186,6 +196,9 @@ sub confirm {
 sub text_input {
     my $question = shift;
     my %args = @_;
+
+    # Initialize Term
+    $TERM ||= Term::ReadLine->new($0);
 
     # Make sure there's a space before the prompt
     $question =~ s/\s*$/ /;
@@ -218,6 +231,9 @@ sub text_input {
 sub menu {
     my ($question,$opts) = @_;
     my %desc = ();
+
+    # Initialize Term
+    $TERM ||= Term::ReadLine->new($0);
 
     # Determine how to handle this list
     if( ref $opts eq 'ARRAY' ) {
@@ -276,7 +292,7 @@ CLI::Helpers - Subroutines for making simple command line scripts
 
 =head1 VERSION
 
-version 0.3
+version 0.4
 
 =head1 SYNOPSIS
 
