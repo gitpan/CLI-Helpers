@@ -1,9 +1,31 @@
 ==================================================
-Changes from 2013-04-02 00:00:00 +0000 to present.
+Changes from 2013-08-11 00:00:00 +0000 to present.
 ==================================================
 
 ----------------------------------------
-version 0.4 at 2014-04-02 10:56:49 +0000
+version 0.5 at 2014-08-11 16:26:59 +0000
+----------------------------------------
+
+  Change: 6a4baec49a00f64883e8d541e56aa995e148aa68
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2014-08-11 16:26:53 +0000
+
+    Formatting changes between DZIL versions 
+
+  Change: cdadde7e43baf7648a260ee0af4ec5a73e271c8f
+  Author: Brad Lhotsky <brad.lhotsky@booking.com>
+  Date : 2014-08-11 15:06:18 +0000
+
+    Add option to output to a data-file 
+
+  Change: 2541a440c21b5918b5f30c590c2a93a500fb60a5
+  Author: Brad Lhotsky <brad.lhotsky@booking.com>
+  Date : 2014-04-11 12:24:39 +0000
+
+    Fix use of uninitialized value warning. RT #94621 
+
+----------------------------------------
+version 0.4 at 2014-04-02 10:31:55 +0000
 ----------------------------------------
 
   Change: e70ac1f8b0b86cb30b17ac2254715e06e370d613
