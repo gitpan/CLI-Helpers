@@ -1,7 +1,7 @@
 # ABSTRACT: Subroutines for making simple command line scripts
 package CLI::Helpers;
 
-our $VERSION = 0.5;
+our $VERSION = 0.6;
 our $_OPTIONS_PARSED;
 
 use strict;
@@ -265,10 +265,9 @@ sub menu {
 
     print $OUT "$question\n\n";
     my %ref = ();
-    my $id  = 1;
+    my $id  = 0;
     foreach my $key (sort keys %desc) {
-        $ref{$id} = $key;
-        $id++;
+        $ref{++$id} = $key;
     }
 
     my $choice;
@@ -303,13 +302,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 CLI::Helpers - Subroutines for making simple command line scripts
 
 =head1 VERSION
 
-version 0.5
+version 0.6
 
 =head1 SYNOPSIS
 

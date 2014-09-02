@@ -1,9 +1,56 @@
 ==================================================
-Changes from 2013-08-11 00:00:00 +0000 to present.
+Changes from 2013-09-02 00:00:00 +0000 to present.
 ==================================================
 
 ----------------------------------------
-version 0.5 at 2014-08-11 16:26:59 +0000
+version 0.6 at 2014-09-02 18:24:11 +0000
+----------------------------------------
+
+  Change: b4af62f53b5cca602d2ceaf0ec97bc10713ab1e2
+  Author: Brad Lhotsky <brad.lhotsky@booking.com>
+  Date : 2014-09-02 20:23:31 +0000
+
+    Version 0.6 release. 
+
+  Change: be5e8b88bd72f8dda69c2941236ac81a94e45c57
+  Author: Brad Lhotsky <brad.lhotsky@gmail.com>
+  Date : 2014-08-11 19:00:20 +0000
+
+    Merge pull request #1 from gugod/master
+
+    fix the display of selection range that is off-by-one on prompt. 
+
+  Change: b8c71e8303add527915e7a2de175528afd7d74b4
+  Author: Kang-min Liu <gugod@gugod.org>
+  Date : 2014-08-11 15:33:19 +0000
+
+    fix the display of selection range that is off-by-one on prompt.
+
+    A trivial example to demostrate the error:
+
+    [~/src/CLI-Helpers]
+
+    > perl -Ilib -MCLI::Helpers=:all -e 'prompt("pick one", menu =>
+    ["a".."e"])'
+
+    pick one
+
+    1. a
+
+    2. b
+
+    3. c
+
+    4. d
+
+    5. e
+
+    Selection (1-6):
+
+    ^-- wrong 
+
+----------------------------------------
+version 0.5 at 2014-08-11 16:26:53 +0000
 ----------------------------------------
 
   Change: 6a4baec49a00f64883e8d541e56aa995e148aa68
