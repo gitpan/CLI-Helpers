@@ -1,7 +1,7 @@
 # ABSTRACT: Subroutines for making simple command line scripts
 package CLI::Helpers;
 
-our $VERSION = 0.6;
+our $VERSION = 0.7;
 our $_OPTIONS_PARSED;
 
 use strict;
@@ -38,7 +38,7 @@ my %opt = ();
 if( !defined $_OPTIONS_PARSED ) {
     GetOptions(\%opt,
         'color!',
-        'verbose+',
+        'verbose|v+',
         'debug',
         'quiet',
         'data-file:s',
@@ -58,15 +58,26 @@ if( exists $opt{'data-file'} ) {
 
 # Set defaults
 my %DEF = (
-    DEBUG       => $opt{debug} || 0,
+    DEBUG       => $opt{debug}   || 0,
     VERBOSE     => $opt{verbose} || 0,
-    COLOR       => $opt{color} || git_color_check(),
+    COLOR       => $opt{color}   || git_color_check(),
     KV_FORMAT   => ': ',
-    QUIET       => $opt{quiet} || 0,
+    QUIET       => $opt{quiet}   || 0,
 );
 debug_var(\%DEF);
 
+
 my $TERM = undef;
+my @STICKY = ();
+
+# Allow some messages to be fired at the end the of program
+END {
+    if(@STICKY) {
+        foreach my $args (@STICKY) {
+            output(@{ $args  });
+        }
+    }
+}
 
 
 sub def { return exists $DEF{$_[0]} ? $DEF{$_[0]} : undef }
@@ -147,6 +158,14 @@ sub output {
     if(defined $data_fh && exists $opts->{data} && $opts->{data}) {
         print $data_fh "$_\n" for @input;
     }
+
+    # Sticky messages don't just go away
+    if(exists $opts->{sticky}) {
+        my %o = %{ $opts };  # Make a copy because we shifted this off @_
+        # So this doesn't happen in the END block again
+        delete $o{$_} for grep { exists $o{$_} } qw(sticky data);
+        push @STICKY, [ \%o, @input ];
+    }
 }
 
 sub verbose {
@@ -216,6 +235,14 @@ sub text_input {
     my $question = shift;
     my %args = @_;
 
+    # Prompt fixes
+    chomp($question);
+    my $terminator = $question =~ s/([^a-zA-Z0-9\)\]\}])\s*$// ? $1 : ':';
+    if(exists $args{default}) {
+        $question .= " (default=$args{default}) ";
+    }
+    $question .= "$terminator ";
+
     # Initialize Term
     $TERM ||= Term::ReadLine->new($0);
 
@@ -233,10 +260,15 @@ sub text_input {
         $error=undef;
         $text = $TERM->readline($question);
         $TERM->addhistory($text) if $text =~ /\S/;
+
+        # Check the default if the person just hit enter
+        if( exists $args{default} && length($text) == 0 ) {
+            return $args{default};
+        }
         foreach my $v (keys %{$validate}) {
             local $_ = $text;
             if( $validate->{$v}->() > 0 ) {
-                debug("validated: $v");
+                debug({indent=>1}," + Validated: $v");
                 next;
             }
             $error = $v;
@@ -310,7 +342,7 @@ CLI::Helpers - Subroutines for making simple command line scripts
 
 =head1 VERSION
 
-version 0.6
+version 0.7
 
 =head1 SYNOPSIS
 
@@ -493,7 +525,7 @@ From CLI::Helpers:
 
     --data-file         Path to a file to write lines tagged with 'data => 1'
     --color             Boolean, enable/disable color, default use git settings
-    --verbose           Incremental, increase verbosity
+    --verbose           Incremental, increase verbosity (Alias is -v)
     --debug             Show developer output
     --quiet             Show no output (for cron)
 
@@ -503,6 +535,11 @@ Every output function takes an optional HASH reference containing options for
 that output.  The hash may contain the following options:
 
 =over 4
+
+=item B<sticky>
+
+Any lines tagged with 'sticky' will be replayed at the end program's end.  This
+is to allow a developer to ensure message are seen at the termination of the program.
 
 =item B<color>
 

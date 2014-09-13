@@ -1,9 +1,57 @@
 ==================================================
-Changes from 2013-09-02 00:00:00 +0000 to present.
+Changes from 2013-09-13 00:00:00 +0000 to present.
 ==================================================
 
 ----------------------------------------
-version 0.6 at 2014-09-02 18:24:11 +0000
+version 0.7 at 2014-09-13 14:11:34 +0000
+----------------------------------------
+
+  Change: c7c39762025dd90f3a293da921e5efd0f2ff6bc9
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2014-09-13 16:11:24 +0000
+
+    Version Bump for 0.7 
+
+  Change: 5c7ecf5de9351b8bf7a41a263d94793804413fc7
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2014-09-13 16:05:49 +0000
+
+    Documentation updates for the added features. Added some simple exmaples
+    for testing the changes. 
+
+  Change: 8d2483a05b75e3da6dd0b2db1463d7ac7939dd1d
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2014-09-13 16:05:49 +0000
+
+    Enable "sticky" output mode to allow output to be replayed at the end of
+    the program. 
+
+  Change: 27eca9ec43f96c429b0b1a8a65cb2dd8740fca31
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2014-09-13 15:58:33 +0000
+
+    Fix the handling of "default" options in calls to prompt(); 
+
+  Change: 2191559cc43598999b02e63850a4d326b634f705
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2014-09-13 15:51:04 +0000
+
+    Added alias of '-v' for --verbose to be more compatible. 
+
+  Change: d2e862fe70bb49245c9acc768b07a5841a66f1b9
+  Author: Brad Lhotsky <brad.lhotsky@booking.com>
+  Date : 2014-09-02 20:24:28 +0000
+
+    Version 0.6 release. 
+
+  Change: ad80542344b7dfd8b7a20c3b254888e988080603
+  Author: Brad Lhotsky <brad@divisionbyzero.net>
+  Date : 2014-08-13 23:21:04 +0000
+
+    Conversion to Dist::Zilla 5 
+
+----------------------------------------
+version 0.6 at 2014-09-02 18:23:31 +0000
 ----------------------------------------
 
   Change: b4af62f53b5cca602d2ceaf0ec97bc10713ab1e2
